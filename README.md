@@ -35,37 +35,23 @@ Lets take a look inside the `src` folder
 - `utils` → contains helper methods, error classes etc.
 ###PROJECT SETUP REQUIREMENTS
 - Download this template from github and open it in your favourite text editor.
-
+- Go inside your folder path and execute :
+```
+npm install
+```
 - In the root directory create a `.env` file and add the following env variables
 ```
 PORT=<port number of your choice>
 ```
-- inside src/config create a config.json file and write the following code :
-```
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
+- Go inside the src folder and execute :
 
 ```
+ npx sequelize init 
+```
+- by executing the above command you will get migrations and seeders folder along with a config.json file inside src/config floder
 - If you'er setting up your developement environment , then write the username and passwor d of your db and in dialect write the db name forex- mysql,mariadb, etc .
 -if you are setting up test or prod environment , make sure you replace the host with the hosted db url
+- To run the server execute
+```
+npm run dev
+```
