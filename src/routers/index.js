@@ -5,5 +5,5 @@ const v1routes = require('./v1')  ;
 
 // here mounting routes for version v1 
 router.use("/v1",v1routes) ;
-
+// always export the router
 module.exports = router ;

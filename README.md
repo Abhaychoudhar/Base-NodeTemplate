@@ -51,6 +51,7 @@ PORT=<port number of your choice>
 - by executing the above command you will get migrations and seeders folder along with a config.json file inside src/config floder
 - If you'er setting up your developement environment , then write the username and passwor d of your db and in dialect write the db name forex- mysql,mariadb, etc .
 -if you are setting up test or prod environment , make sure you replace the host with the hosted db url
+-Although by default the db will run in developement phase
 - To run the server execute
 ```
 npm run dev
