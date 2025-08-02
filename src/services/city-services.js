@@ -31,4 +31,57 @@ async function createCity(data){
             throw new AppError('Cannot create a new city object', StatusCodes.INTERNAL_SERVER_ERROR) ;
      }
 }
-module.exports = {createCity}
+async function deleteCity(id){
+       try{
+              console.log(id) ;
+            const airplane = await cityRepository.destroy(id) ;
+            return airplane;
+       } catch(error){
+            //  ErrorResponse.error = error ;
+            console.log(error.message) ;
+            if( error.message == "Not Found" ){
+              throw error ;
+            }
+             throw  new AppError("Cannot Delete",StatusCodes.BAD_REQUEST) ;
+       }
+}
+async function getCity(id){
+       try{
+              console.log(id) ;
+            const airplane = await cityRepository.get(id) ;
+             if( !airplane ){
+              
+              throw  error ;
+            }
+            return airplane;
+       } catch(error){
+            //  ErrorResponse.error = error ;..
+            console.log("here2")
+             throw  new AppError("City Not Available",StatusCodes.BAD_REQUEST) ;
+       }
+}
+async function getCities(){
+       try{
+            const airplanes = await cityRepository.getAll() ;
+            return airplanes;
+       } catch(error){
+             throw  new AppError("Can't get All Airplanes",StatusCodes.INTERNAL_SERVER_ERROR) ;
+       }
+}
+async function updateCity(id,data){
+       try{
+
+            const response = await cityRepository.update(id,data);
+            return response;
+       } catch(error){
+              //console.log(error.name) ;
+             throw  new AppError(error.message,StatusCodes.BAD_REQUEST) ;
+       }
+}
+module.exports = {
+       createCity,
+       deleteCity,
+       getCity,
+       updateCity,
+       getCities
+}

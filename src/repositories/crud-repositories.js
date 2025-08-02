@@ -2,6 +2,8 @@
 Actual queries are always written in repositories
 Although these queries are in object (ORM) form but we can even also write raw queries here
  */
+const {AppError} = require("../utils/errors")
+const {StatusCodes} = require("http-status-codes") ;
 class CrudRepository{
     constructor(model){
         this.model  = model ;
@@ -13,8 +15,11 @@ class CrudRepository{
      }
      async destroy(data) {
           try{
+            console.log("Came here") ;
             const r1 = await this.model.findByPk(data) ;
-            if( !r1 ) throw error; 
+            if( !r1 ){
+                throw new AppError("Not Found",StatusCodes.BAD_REQUEST)
+            } 
             const response = await this.model.destroy({
                 where : {
                     id : data
