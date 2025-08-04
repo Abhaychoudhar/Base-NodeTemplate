@@ -13,8 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       // to apply changes on the database level
       this.belongsTo(models.City,{
         foreignKey:'cityId',
-        onDelete:'CASCADE',
-        onUpdate:'CASCADE'
+           })
+        this.hasMany(models.flight,{
+        foreignKey:'departureAirportId',
+        onDelete: 'CASCADE'
+      })
+        this.hasMany(models.flight,{
+        foreignKey:'arrivalAirportId',
+        onDelete: 'CASCADE'
       })
     }
   }
