@@ -11,6 +11,8 @@ router.post(
 );
 
 router.get("/",AirportController.getAirports)
+// in patch you just send the object and only send those var in obj which you want to update and they
+// will update automatically
 router.patch("/:id",AirportController.updateAirport)
 router.get("/:id",AirportController.getAirport)
 router.delete("/:id",AirportController.deleteAirport)

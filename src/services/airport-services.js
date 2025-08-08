@@ -35,12 +35,12 @@ async function getAirports(){
        }
 }
 async function getAirport(id){
-       try{
+       try{  console.log(id) ;
             const airport = await airportRepository.get(id) ;
             if( !airport ){
               throw  new AppError("Airport Not Available",StatusCodes.INTERNAL_SERVER_ERROR) ;
             }
-            return airplane;
+            return airport;
        } catch(error){
              throw  new AppError("Airport Not Available",StatusCodes.INTERNAL_SERVER_ERROR) ;
        }
@@ -59,7 +59,7 @@ async function updateAirport(id,data){
             const response = await airportRepository.update(id,data);
             return response;
        } catch(error){
-              //console.log(error.name) ;
+              console.log(error.name) ;
              throw  new AppError(error.message,StatusCodes.BAD_REQUEST) ;
        }
 }

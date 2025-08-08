@@ -4,21 +4,20 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Airport extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // to apply changes on the database level
       this.belongsTo(models.City,{
         foreignKey:'cityId',
+        as: 'cityDetails'
            })
-        this.hasMany(models.flight,{
+        this.hasMany(models.Flight,{
+            /// ye woh columns hain jo flights mein exist karenge is naam se
+            // actual mein kondsa column hai weoh toh migration me bta diyta h
         foreignKey:'departureAirportId',
         onDelete: 'CASCADE'
       })
-        this.hasMany(models.flight,{
+        this.hasMany(models.Flight,{
+          /// ye woh columns hain jo flights mein exist karenge is naam se
         foreignKey:'arrivalAirportId',
         onDelete: 'CASCADE'
       })
