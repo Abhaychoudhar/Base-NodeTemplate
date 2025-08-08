@@ -4,6 +4,8 @@ const {BUSINESS,ECONOMY,PREMIUM_ECONOMY,FIRST_CLASS} = Enums.seatType
 const {
   Model
 } = require('sequelize');
+// airplaneId , row, col , type
+//
 module.exports = (sequelize, DataTypes) => {
   class Seat extends Model {
     static associate(models) {
