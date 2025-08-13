@@ -35,7 +35,37 @@ async function getAllFlights(req,res){
         throw new AppError("Not able to fliter the query ",StatusCodes.BAD_REQUEST) ;
     }
 }
+async function getFlight(req,res){
+    try{
+        // console.log(req.query) 
+        const id = req.params.id ;
+        const flight = await FlightService.getFlight(id) ;
+        SuccessResponse.message = flight ;
+        return res.status(StatusCodes.ACCEPTED).json(SuccessResponse); 
+    }catch(err){
+        throw new AppError("Not able to get the flight ",StatusCodes.BAD_REQUEST) ;
+    }
+}
+async function updateSeats(req,res){
+ 
+     try{
+        console.log(req.params)
+           const data = {
+        flightId : req.params.id ,
+        seats : req.body.seats,
+        dec : req.body.dec
+    }
+     console.log(data) ;
+        const flight = await FlightService.updateSeats(data) ;
+        SuccessResponse.message = flight ;
+        return res.status(StatusCodes.ACCEPTED).json(SuccessResponse); 
+    }catch(err){
+        throw new AppError("Not able to get the flight ",StatusCodes.BAD_REQUEST) ;
+    }
+}
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight,
+    updateSeats
 };

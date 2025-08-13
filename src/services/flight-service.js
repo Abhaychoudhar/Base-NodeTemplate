@@ -89,7 +89,26 @@ async function getAllFlights(query){
            throw error ;
    }
 }
+async function getFlight(id){
+        try{  
+                   const flight = await flightRepository.get(id) ;
+                   return flight;
+              } catch(error){
+                    throw  new AppError("Flight Not Available",StatusCodes.INTERNAL_SERVER_ERROR) ;
+              }
+}
+async function updateSeats(data){
+        try{  
+              console.log(data)
+                   const response = await flightRepository.updateRemainingSeats(data.flightId,data.seats,data.dec) ;
+                   return response;
+              } catch(error){
+                    throw  new AppError("Flight Not Available",StatusCodes.INTERNAL_SERVER_ERROR) ;
+              }
+}
 module.exports = {
        createFlight,
-       getAllFlights
+       getAllFlights,
+       getFlight,
+       updateSeats
 }
