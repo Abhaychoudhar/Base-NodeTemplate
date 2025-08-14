@@ -40,7 +40,7 @@ async function getFlight(req,res){
         // console.log(req.query) 
         const id = req.params.id ;
         const flight = await FlightService.getFlight(id) ;
-        SuccessResponse.message = flight ;
+        SuccessResponse.data = flight ;
         return res.status(StatusCodes.ACCEPTED).json(SuccessResponse); 
     }catch(err){
         throw new AppError("Not able to get the flight ",StatusCodes.BAD_REQUEST) ;
